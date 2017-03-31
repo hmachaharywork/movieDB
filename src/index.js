@@ -1,9 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'font-awesome/css/font-awesome.css';
 
-ReactDOM.render(
-  <App />,
+import configureStore from './store/configureStore';
+import App from './containers/App';
+import './styles/index.css';
+
+
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
