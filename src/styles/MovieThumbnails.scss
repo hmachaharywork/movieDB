@@ -1,3 +1,10 @@
+.container {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  padding: 0;
+}
+
 .movie-description {
   height: 100px;
   width: inherit;
@@ -11,20 +18,29 @@
 }
 
 .movie-title {
-  display: flex;
-  justify-content: center;
+  width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-title h4 {
-  flex-grow: 3;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+.movie-property {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 5px 5px 0 0;
 }
 
 .rating {
   flex-grow: 1;
-  padding: 8px;
-  text-align: right;
+  text-align: center;
 }
 
-.movie-property {
-  margin-bottom: 10px;
+.movie-release {
+  flex-grow: 2
 }

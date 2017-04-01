@@ -3,34 +3,36 @@ import { connect } from 'react-redux';
 
 import Carousel from '../components/Carousel';
 import MovieThumbnails from '../components/MovieThumbnails';
-import { sortMovies } from '../utils/utility';
-import { loadMovies, nowShowingRequest } from '../actions/Home';
+import { sortMoviesByDate } from '../utils/utility';
+import { loadMovies, nowShowingRequest, nowShowingClear } from '../actions/Home';
 
 class Home extends Component {
 
   componentWillMount() {
     let { dispatch } = this.props;
     dispatch(nowShowingRequest());
-    dispatch(loadMovies('now_playing?language=en-US&page=1'));
+    dispatch(loadMovies('now_playing?language=en-US&page=1&region=IN'));
+  }
+
+  componentWillUnmount() {
+    let { dispatch } = this.props;
+      dispatch(nowShowingClear());
   }
 
   render() {
     let { movies, isLoading } = this.props;
-    let sortedMovies = sortMovies(movies);
+    let sortedMovies = sortMoviesByDate(movies);
 
-    function Loading() {
-      if(isLoading){
-        return <h1>Loading...</h1>;
-      }else {
-        return (
-          <div>
-            <Carousel />
-            <MovieThumbnails movies={sortedMovies} />
-          </div>
-        );
-      }
+    if(isLoading){
+      return <h1>Loading...</h1>;
+    }else {
+      return (
+        <div>
+          <Carousel />
+          <MovieThumbnails movies={sortedMovies} />
+        </div>
+      );
     }
-    return Loading();
   }
 }
 

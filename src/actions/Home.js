@@ -10,9 +10,8 @@ export const nowShowingSuccess = (movies) => ({
   movies
 });
 
-export const nowShowingError = (error) => ({
-  type: types.FETCH_INTHEATRE_MOVIE_ERROR,
-  error
+export const nowShowingClear = () => ({
+  type: types.FETCH_INTHEATRE_MOVIE_CLEAR
 });
 
 export function loadMovies(url) {
