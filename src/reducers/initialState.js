@@ -1,4 +1,5 @@
 export const initialState = () => ({
+    genre: [],
     nowShowing:{
       isLoading: true,
       inTheatre: []

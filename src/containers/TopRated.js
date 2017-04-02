@@ -7,10 +7,11 @@ import { sortMoviesByRate } from '../utils/utility';
 
 
 class TopRated extends Component {
-  componentWillMount() {
+
+  componentDidMount() {
     let {dispatch, page} = this.props;
     dispatch(topRatedMovieRequest());
-    dispatch(loadTopRated('top_rated?language=en-US&region=IN&page=' + page));
+    dispatch(loadTopRated('movie/top_rated?language=en-US&page=' + page));
   }
 
   componentWillUnmount() {
@@ -19,14 +20,14 @@ class TopRated extends Component {
   }
 
   render() {
-    let { isFetching, topRatedMovies } = this.props;
+    let { genre, isFetching, topRatedMovies } = this.props;
     let sortedMovies = sortMoviesByRate(topRatedMovies);
     if(isFetching) {
       return <h1>Loading...</h1>;
     }else{
       return (
         <div>
-          <MovieThumbnails movies={sortedMovies} />
+          <MovieThumbnails genre={genre} movies={sortedMovies} />
         </div>
       );
     }
@@ -34,8 +35,10 @@ class TopRated extends Component {
 }
 
 function mapStateToProps(state) {
+  let { genre } = state;
   let { isFetching, topRatedMovies, page } = state.topRated;
   return {
+    genre,
     page,
     topRatedMovies,
     isFetching

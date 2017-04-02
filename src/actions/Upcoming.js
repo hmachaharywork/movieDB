@@ -16,8 +16,8 @@ export const upcomingMovieClear = () => ({
 
 export function loadUpcomingMovies(url) {
   return function(dispatch) {
-    return Api.getData(url).then(movies => {
-      dispatch(upcomingMovieSuccess(movies));
+    return Api.getData(url).then(data => {
+      dispatch(upcomingMovieSuccess(data.results));
     }).catch(error => {
       throw(error);
     });

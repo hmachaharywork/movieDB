@@ -7,10 +7,10 @@ import { sortMoviesAsc } from '../utils/utility';
 
 class Upcoming extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     let { page, dispatch } = this.props;
     dispatch(upcomingMovieRequest());
-    dispatch(loadUpcomingMovies('upcoming?language=en-US&page=' + page +'&region=IN'))
+    dispatch(loadUpcomingMovies('movie/upcoming?language=en-US&page=' + page +'&region=IN'))
   }
 
   componentWillUnmount() {
@@ -19,14 +19,14 @@ class Upcoming extends Component {
   }
 
   render() {
-    let { upcomingMovies, isFetching } = this.props;
+    let { genre, upcomingMovies, isFetching } = this.props;
     let sortedMovies = sortMoviesAsc(upcomingMovies);
     if(isFetching) {
       return <h1>Loading...</h1>;
     }else {
       return (
         <div>
-          <MovieThumbnails movies={sortedMovies} />
+          <MovieThumbnails genre={genre} movies={sortedMovies} />
         </div>
       );
     }
@@ -34,9 +34,11 @@ class Upcoming extends Component {
 }
 
 function mapStateToProps(state) {
+  let { genre } = state;
   let { isFetching, upcomingMovies, page } = state.upcoming;
 
   return {
+    genre,
     isFetching,
     upcomingMovies,
     page

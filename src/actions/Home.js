@@ -16,8 +16,8 @@ export const nowShowingClear = () => ({
 
 export function loadMovies(url) {
   return function(dispatch) {
-    return Api.getData(url).then(movies => {
-      dispatch(nowShowingSuccess(movies));
+    return Api.getData(url).then(data => {
+      dispatch(nowShowingSuccess(data.results));
     }).catch(error => {
       throw(error);
     });

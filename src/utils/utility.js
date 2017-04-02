@@ -55,5 +55,17 @@ export function sortMoviesAsc(movies) {
   return sortedMovies;
 }
 
+export function genreListing(genre_ids, genre) {
+  let genreStr = "";
+  let length = genre.length;
+  for (var i = 0; i < length; i++) {
+    //console.log(genre[i]);
+    if(genre_ids.includes(genre[i].id)) {
+      (genreStr !== "") ? (genreStr = genreStr + ", " + genre[i].name) : (genreStr += genre[i].name);
+    }
+  }
+  return genreStr;
+}
+
 
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500_and_h281_bestv2';

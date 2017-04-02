@@ -8,10 +8,10 @@ import { sortMoviesByRate } from '../utils/utility';
 
 class Popular extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     let {dispatch, page} = this.props;
     dispatch(popularMovieRequest());
-    dispatch(loadPopular('popular?language=en-US&page=' + page));
+    dispatch(loadPopular('movie/popular?language=en-US&page=' + page));
   }
 
   componentWillUnmount() {
@@ -20,14 +20,14 @@ class Popular extends Component {
   }
 
   render() {
-    let { isFetching, popularMovies } = this.props;
+    let { genre, isFetching, popularMovies } = this.props;
     let sortedMovies = sortMoviesByRate(popularMovies);
     if(isFetching) {
       return <h1>Loading...</h1>;
     }else{
       return (
         <div>
-          <MovieThumbnails movies={sortedMovies} />
+          <MovieThumbnails genre={genre} movies={sortedMovies} />
         </div>
       );
     }
@@ -35,8 +35,10 @@ class Popular extends Component {
 }
 
 function mapStateToProps(state) {
+  let { genre } = state;
   let { isFetching, popularMovies, page } = state.popular;
   return {
+    genre,
     page,
     popularMovies,
     isFetching

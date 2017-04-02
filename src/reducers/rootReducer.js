@@ -3,12 +3,14 @@ import movieReducer from './Home';
 import popularMovieReducer from './Popular';
 import topRatedMovieReducer from './TopRated';
 import upcomingMovieReducer from './Upcoming';
+import genreReducer from './Genre';
 
 const rootReducer = combineReducers({
   nowShowing: movieReducer,
   popular: popularMovieReducer,
   topRated: topRatedMovieReducer,
-  upcoming: upcomingMovieReducer
+  upcoming: upcomingMovieReducer,
+  genre: genreReducer
 })
 
 export default rootReducer;

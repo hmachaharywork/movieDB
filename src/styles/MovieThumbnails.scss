@@ -6,6 +6,9 @@
 }
 
 .movie-description {
+  display: block;
+  word-wrap: break-word;
+  white-space: normal;
   height: 100px;
   width: inherit;
   overflow: hidden;

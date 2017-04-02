@@ -10,15 +10,14 @@ export const popularMovieSuccess = (movies) => ({
   movies
 });
 
-export const popularMovieClear = (error) => ({
-  type: types.FETCH_POPULAR_MOVIE_CLEAR,
-  error
+export const popularMovieClear = () => ({
+  type: types.FETCH_POPULAR_MOVIE_CLEAR
 });
 
 export function loadPopular(url) {
   return function(dispatch) {
-    return Api.getData(url).then(movies => {
-      dispatch(popularMovieSuccess(movies));
+    return Api.getData(url).then(data => {
+      dispatch(popularMovieSuccess(data.results));
     }).catch(error => {
       throw(error);
     });

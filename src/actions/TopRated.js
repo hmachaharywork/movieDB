@@ -16,8 +16,8 @@ export const topRatedMovieClear = () => ({
 
 export function loadTopRated(url) {
   return function(dispatch) {
-    return Api.getData(url).then(movies => {
-      dispatch(topRatedMovieSuccess(movies));
+    return Api.getData(url).then(data => {
+      dispatch(topRatedMovieSuccess(data.results));
     }).catch(error => {
       throw(error);
     });
