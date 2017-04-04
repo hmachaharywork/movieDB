@@ -1,23 +1,30 @@
 import * as types from './actionTypes';
 import Api from '../api/apiCall';
 
-export const nowShowingRequest = () => ({
+const nowShowingRequest = () => ({
   type: types.FETCH_INTHEATRE_MOVIE_REQUEST
 });
 
-export const nowShowingSuccess = (movies) => ({
+const nowShowingSuccess = (movies) => ({
   type: types.FETCH_INTHEATRE_MOVIE_SUCCESS,
   movies
 });
 
-export const nowShowingClear = () => ({
-  type: types.FETCH_INTHEATRE_MOVIE_CLEAR
-});
 
 export function loadMovies(url) {
-  return function(dispatch) {
-    return Api.getData(url).then(data => {
-      dispatch(nowShowingSuccess(data.results));
+
+  return function(dispatch, getState) {
+    let { inTheatre } = getState().nowShowing;
+
+    if(inTheatre.length > 0) {
+      return;
+    }
+
+    dispatch(nowShowingRequest());
+
+    return Api.getData(url).then(
+      data => {
+        dispatch(nowShowingSuccess(data.results));
     }).catch(error => {
       throw(error);
     });

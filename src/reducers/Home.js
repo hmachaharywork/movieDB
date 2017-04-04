@@ -11,12 +11,6 @@ export default function movieReducer(state = initialState().nowShowing, action) 
         inTheatre: action.movies,
         isLoading: false
       }
-    case types.FETCH_INTHEATRE_MOVIE_CLEAR:
-      return {
-        ...state,
-        isLoading: true,
-        inTheatre: []
-      }
     default:
       return state;
   }

@@ -1,21 +1,26 @@
 import * as types from './actionTypes';
 import Api from '../api/apiCall';
 
-export const upcomingMovieRequest = () => ({
+const upcomingMovieRequest = () => ({
   type: types.FETCH_UPCOMING_MOVIE_REQUEST
 });
 
-export const upcomingMovieSuccess = (movies) => ({
+const upcomingMovieSuccess = (movies) => ({
   type: types.FETCH_UPCOMING_MOVIE_SUCCESS,
   movies
 });
 
-export const upcomingMovieClear = () => ({
-  type: types.FETCH_UPCOMING_MOVIE_CLEAR,
-});
 
 export function loadUpcomingMovies(url) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    let { upcomingMovies } = getState().upcoming;
+
+    if(upcomingMovies.length > 0) {
+      return;
+    }
+
+    dispatch(upcomingMovieRequest());
+
     return Api.getData(url).then(data => {
       dispatch(upcomingMovieSuccess(data.results));
     }).catch(error => {

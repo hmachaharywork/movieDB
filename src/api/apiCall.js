@@ -7,10 +7,10 @@ class Api {
   static getData(location) {
     var requestUrl = `${THE_MOVIE_DB_URL}${location}&${API_KEY}`;
     return axios.get(requestUrl).then(response => {
-      //console.log(response);
+      //console.log(response.data);
       return response.data;
     }).catch(error => {
-      return error;
+      console.log(error);
     });
   }
 }

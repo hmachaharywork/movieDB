@@ -1,4 +1,8 @@
-export function sortMoviesByDate(movies) {
+export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500_and_h281_bestv2';
+
+/*************** Sort movies by release date descending***************/
+
+export const sortMoviesByDate = (movies) => {
   let sortedMovies = (movies !== 'undefined') ? movies : [];
 
   sortedMovies = sortedMovies.filter((movie) => {
@@ -21,9 +25,11 @@ export function sortMoviesByDate(movies) {
   });
 
   return sortedMovies;
-}
+};
 
-export function sortMoviesByRate(movies) {
+/********* Sort movies by rating ************/
+
+export const sortMoviesByRate = (movies) => {
   let sortedMovies = (movies !== 'undefined') ? movies : [];
   sortedMovies = sortedMovies.sort((a, b) => {
     if(a.vote_average > b.vote_average){
@@ -36,9 +42,10 @@ export function sortMoviesByRate(movies) {
   });
 
   return sortedMovies;
-}
+};
 
-export function sortMoviesAsc(movies) {
+/********** Sort movies by release date ascending ***********/
+export const sortMoviesAsc = (movies) => {
   let sortedMovies = (movies !== 'undefined') ? movies : [];
   sortedMovies = sortedMovies.sort((a, b) => {
     let aDate = parseInt((new Date(a.release_date).getTime() / 1000).toFixed(0), 10);
@@ -53,19 +60,39 @@ export function sortMoviesAsc(movies) {
     }
   });
   return sortedMovies;
-}
+};
 
-export function genreListing(genre_ids, genre) {
+
+/****** Listing genre for each movie ************/
+export const genreListing = (genre_ids, genre) => {
   let genreStr = "";
   let length = genre.length;
   for (var i = 0; i < length; i++) {
-    //console.log(genre[i]);
     if(genre_ids.includes(genre[i].id)) {
       (genreStr !== "") ? (genreStr = genreStr + ", " + genre[i].name) : (genreStr += genre[i].name);
     }
   }
   return genreStr;
+};
+
+/********** Extracting image from movie list ***********/
+export const extractImages = (movies) => {
+  let images = [];
+  let length = movies.length;
+  let url =  undefined;
+
+  for(var i = 0; i < length; i++) {
+    if(movies[i].poster_path !== null) {
+      //console.log(movies[i].poster_path);
+      url = `${IMAGE_BASE_URL}${movies[i].poster_path}`;
+      images.push(url);
+    }else if( movies[i].backdrop_path !== null) {
+      //console.log(movies[i].poster_path);
+      url = `${IMAGE_BASE_URL}${movies[i].backdrop_path}`;
+      images.push(url);
+
+    }
+  }
+  //console.log(images);
+  return images;
 }
-
-
-export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500_and_h281_bestv2';

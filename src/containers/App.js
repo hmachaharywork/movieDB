@@ -7,6 +7,7 @@ import Popular from './Popular';
 import TopRated from './TopRated';
 import Upcoming from './Upcoming';
 import Search from './Search';
+import Detail from './Detail';
 import '../styles/App.css';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/popular" component={Popular} />
             <Route path="/top_rated" component={TopRated} />
             <Route path="/upcoming" component={Upcoming} />
+            <Route path="/:id-:name/details" component={Detail} />
             <Route render={() => <h2>404 page not found.</h2>} />
           </Switch>
         </div>

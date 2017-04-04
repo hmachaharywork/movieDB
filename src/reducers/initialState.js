@@ -18,5 +18,9 @@ export const initialState = () => ({
       isFetching: true,
       upcomingMovies: [],
       page: 1
+    },
+    movieDetails: {
+      isFetching: true,
+      data: {}
     }
 })
