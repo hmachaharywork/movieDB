@@ -5,6 +5,7 @@ import topRatedMovieReducer from './TopRated';
 import upcomingMovieReducer from './Upcoming';
 import detailReducer from './detailReducer';
 import genreReducer from './Genre';
+import castReducer from './castReducer';
 
 const rootReducer = combineReducers({
   nowShowing: movieReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   topRated: topRatedMovieReducer,
   upcoming: upcomingMovieReducer,
   genre: genreReducer,
-  movieDetails: detailReducer
+  movieDetails: detailReducer,
+  casts: castReducer
 })
 
 export default rootReducer;

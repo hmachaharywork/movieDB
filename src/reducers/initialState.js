@@ -21,6 +21,10 @@ export const initialState = () => ({
     },
     movieDetails: {
       isFetching: true,
-      data: {}
+      data: {},
+    },
+    casts: {
+      cast: [],
+      crew:[]
     }
 })

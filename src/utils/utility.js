@@ -1,4 +1,6 @@
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500_and_h281_bestv2';
+export const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/';
+export const CAST_POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w132_and_h132_bestv2';
 
 /*************** Sort movies by release date descending***************/
 

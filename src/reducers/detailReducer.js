@@ -10,6 +10,11 @@ export default function detailReducer(state = initialState().movieDetails, actio
         data: {...action.data},
         isFetching: false
       }
+    case types.CLEAR_MOVIE_DETAILS:
+      return {
+        data: {},
+        isFetching: true
+      }
     default:
       return state;
   }

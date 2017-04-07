@@ -23,7 +23,7 @@ class App extends Component {
             <Route path="/popular" component={Popular} />
             <Route path="/top_rated" component={TopRated} />
             <Route path="/upcoming" component={Upcoming} />
-            <Route path="/:id-:name/details" component={Detail} />
+            <Route path="/:id-:name" component={Detail} />
             <Route render={() => <h2>404 page not found.</h2>} />
           </Switch>
         </div>

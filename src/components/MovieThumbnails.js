@@ -18,19 +18,19 @@ const MovieThumbnails = ({movies, genre}) => {
       return (
         <Col className="movie-thumnail" key={movie.id} xs={12} sm={6} md={6} lg={4}>
             <Thumbnail src={image} alt={image}>
-            <div className="movie-title">
-              <h4>{movie.title}</h4>
+            <div className="title-rating">
+              <div className="movie-title">{movie.title}</div>
               <div className="rating"><i className="fa fa-star" aria-hidden="true"></i> {movie.vote_average}</div>
             </div>
             <div className="movie-property">
               <div className="movie-release"><i className="fa fa-calendar" aria-hidden="true"></i> {movie.release_date.substring(0, 4)}</div>
-              <div>{genreListing(movie.genre_ids, genre)}</div>
+              <div className="movie-genre">{genreListing(movie.genre_ids, genre)}</div>
             </div>
-            <div className="movie-description">
+            <p className="movie-description">
               {movie.overview}
-            </div>
-            <div>
-                  <Link className="btn btn-primary more-button" to={"/" + movie.id +"-"+ movie.title +"/details"}>More</Link>
+            </p>
+            <div className="redirect">
+                  <Link className="btn btn-primary more-button" to={"/" + movie.id +"-"+ movie.title.split(" ").join("-")}>More</Link>
             </div>
           </Thumbnail>
         </Col>
@@ -39,11 +39,11 @@ const MovieThumbnails = ({movies, genre}) => {
   }
 
   return (
-    <Grid>
-      <Row>
-        {displayGrid()}
-      </Row>
-    </Grid>
+      <Grid>
+        <Row>
+          {displayGrid()}
+        </Row>
+      </Grid>
   );
 
 };

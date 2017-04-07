@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import MovieThumbnails from '../components/MovieThumbnails';
 import { loadTopRated } from '../actions/TopRated';
 import { sortMoviesByRate } from '../utils/utility';
-
+import { API_KEY } from '../api/apiCall';
 
 class TopRated extends Component {
 
   componentDidMount() {
-    this.props.dispatch(loadTopRated('movie/top_rated?language=en-US&page=' + this.props.page));
+    this.props.dispatch(loadTopRated('movie/top_rated?'+ API_KEY +'&language=en-US&page=' + this.props.page));
   }
 
 
   render() {
     let { genre, isFetching, topRatedMovies } = this.props;
     if(isFetching) {
-      return <h1>Loading...</h1>;
+      return <div className="spinner"><img className="gif" src="spinner.gif" alt="spinner" /></div>;
     }else{
       return (
         <div>

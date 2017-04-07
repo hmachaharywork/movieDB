@@ -1,0 +1,43 @@
+.detail-container{
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+  background: #FFFFFF;
+  margin-bottom: 25px;
+
+  & > .details {
+    display: flex;
+  }
+}
+
+
+.movie-attr {
+  padding-left: 20px;
+
+  & > .title > h3{
+    margin: 15px 0 5px 0;
+  }
+
+  & > .overview > h3 {
+    margin: 20px 0 10px 0;
+  }
+
+  & > .user-desc {
+    display: flex;
+    margin: 20px 0 5px 0;
+    .language, .genre, .rate, .trailer {
+      flex-grow: 1;
+    }
+  }
+}
+
+.cast-crew {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  & > .btn {
+    margin-left: 50px;
+    align-items: center;
+  }
+}

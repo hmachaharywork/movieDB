@@ -11,23 +11,22 @@ const CarouselInstance = ({movies}) => {
       if(movie.backdrop_path !== null) {
         return (
           <Carousel.Item key={movie.id}>
-            <img width={900} height={350} alt="900x500" src={IMAGE_BASE_URL + movie.backdrop_path} />
-            <div className="now-showing">Now Showing</div>
+            <img alt="900x500" src={IMAGE_BASE_URL + movie.backdrop_path} />
             <Carousel.Caption>
               <h3>{movie.title}</h3>
-              <Link className="btn btn-primary more-button" to={"/" + movie.id +"-"+ movie.title +"/details"}>Details</Link>
+              <Link className="btn btn-primary more-button" to={"/" + movie.id +"-"+ movie.title.split(" ").join("-")}>Details</Link>
             </Carousel.Caption>
           </Carousel.Item>
         );
+      } else {
+        return null;
       }
     });
   }
     return (
-      // <div className="carousel-container">
         <Carousel indicators={false}>
           { renderCarousel() }
         </Carousel>
-      // </div>
     );
 }
 

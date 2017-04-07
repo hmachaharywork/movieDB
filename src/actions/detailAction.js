@@ -10,8 +10,21 @@ const movieDetailsSuccess = (data) => ({
   data
 });
 
+export const clearMovieDetails = () => ({
+  type: types.CLEAR_MOVIE_DETAILS
+});
 
-export function loadMovieDetails(url) {
+const castFetchRequest = () => ({
+  type: types.FETCH_CASTS_REQUEST
+});
+
+const castFetchSuccess = (data) => ({
+  type: types.FETCH_CASTS_SUCCESS,
+  data
+});
+
+
+function loadMovieDetails(url) {
 
   return function(dispatch, getState) {
     let { data } = getState().movieDetails;
@@ -29,4 +42,31 @@ export function loadMovieDetails(url) {
       throw(error);
     });
   };
+}
+
+function loadCasts(url) {
+  return function(dispatch, getState) {
+    let { casts } = getState();
+
+    if(casts.length > 0) {
+      return;
+    }
+
+    dispatch(castFetchRequest());
+
+    return Api.getData(url).then(
+      data => {
+        //console.log(data);
+        dispatch(castFetchSuccess(data));
+    }).catch(error => {
+      throw(error);
+    })
+  };
+}
+
+export function loadEverything(arg1, arg2) {
+  return dispatch => Promise.all([
+    dispatch(loadCasts(arg1)),
+    dispatch(loadMovieDetails(arg2))
+  ]);
 }
