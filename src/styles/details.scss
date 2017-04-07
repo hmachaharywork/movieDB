@@ -1,21 +1,36 @@
 .detail-container{
   margin-top: 20px;
-  padding: 10px;
+  padding: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
   background: #FFFFFF;
   margin-bottom: 25px;
 
   & > .details {
-    display: flex;
+    margin: 0 auto;
+    @media only screen and (min-width : 768px) {
+      display: flex;
+      padding: 10px;
+    }
+  }
+}
+
+.poster{
+  & > img{
+    margin: 1%;
+    width: 98%;
+    height: 250px;
   }
 }
 
 
 .movie-attr {
   padding-left: 20px;
+  color: #093145;
 
   & > .title > h3{
     margin: 15px 0 5px 0;
+    font-size: 16px;
+    font-weight: bold;
   }
 
   & > .overview > h3 {
